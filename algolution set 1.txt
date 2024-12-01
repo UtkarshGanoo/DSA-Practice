@@ -1,0 +1,547 @@
+wap to count total no of nagative number in an array 02/09/24
+#include <iostream>
+using namespace std;
+
+int countNegativeNumbers(const int arr[], int size) {
+    int count = 0;
+    for (int i = 0; i < size; ++i) {
+        if (arr[i] < 0) {
+            ++count;
+        }
+    }
+    return count;
+}
+
+int main() {
+    int array[] = {1, -2, -3, 4,- 5, 5};
+    int size = sizeof(array) / sizeof(array[0]);
+
+    int negativeCount = countNegativeNumbers(array, size);
+
+    cout << "Total number of negative numbers: " << negativeCount << endl;
+
+    return 0;
+}
+
+Write a program that takes 5 integers as input from the user and print Max of all the numbers.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numbers[5];
+    int max;
+
+    cout << "Enter 5 integers: " << endl;
+    
+    cin >> numbers[0];
+
+    max = numbers[0];
+    for (int i = 1; i < 5; ++i) {
+        cin >> numbers[i];
+        if (numbers[i] > max) {
+            max = numbers[i];
+        }
+    }
+    cout << "The maximum value is: " << max << endl;
+
+    return 0;
+}
+
+Write a program to merge two sorted arrays to a third array.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    
+    int size1, size2;
+    cout << "Enter size of first array: ";
+    cin >> size1;
+    cout << "Enter size of second array: ";
+    cin >> size2;
+
+    
+    int arr1[size1], arr2[size2];
+    cout << "Enter elements of first array (sorted): ";
+    for (int i = 0; i < size1; ++i) cin >> arr1[i];
+    cout << "Enter elements of second array (sorted): ";
+    for (int i = 0; i < size2; ++i) cin >> arr2[i];
+
+    
+    int result[size1 + size2];
+    int i = 0, j = 0, k = 0;
+    while (i < size1 && j < size2) {
+        result[k++] = (arr1[i] < arr2[j]) ? arr1[i++] : arr2[j++];
+    }
+    while (i < size1) result[k++] = arr1[i++];
+    while (j < size2) result[k++] = arr2[j++];
+
+    
+    cout << "Merged sorted array: ";
+    for (int i = 0; i < size1 + size2; ++i) cout << result[i] << " ";
+    cout << endl;
+
+    return 0;
+}
+
+Write a program that takes 7 integers as input from the user
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numbers[7];
+
+    // Input 7 integers
+    cout << "Enter 7 integers: " << endl;
+    for (int i = 0; i < 7; i++) {
+        cin >> numbers[i];
+    }
+
+    // Reverse the order of numbers
+    int start = 0;
+    int end = 6;
+    while (start < end) {
+        int temp = numbers[start];
+        numbers[start] = numbers[end];
+        numbers[end] = temp;
+        start++;
+        end--;
+    }
+
+    // Print the reversed numbers
+    cout << "Reversed numbers: ";
+    for (int i = 0; i < 7; i++) {
+        cout << numbers[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+Write a program that takes 5 integers as input from the user 
+and finds out if the order of numbers in array is palindrome
+e.g. 
+if input numbers are 44 56 56 44 then the array is in palindrome order
+if input numbers are 44 53 156 44 then the array is not in palindrome order.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numbers[5];
+
+    cout << "Enter 5 integers: " << endl;
+    for (int i = 0; i < 5; i++) {
+        cin >> numbers[i];
+    }
+
+    
+    bool isPalindrome = true;
+    for (int i = 0; i < 5 / 2; i++) {
+        if (numbers[i] != numbers[4 - i]) {
+            isPalindrome = false;
+            break;
+        }
+    }
+
+    
+    if (isPalindrome) {
+        cout << "The array is in palindrome order." << endl;
+    } else {
+        cout << "The array is not in palindrome order." << endl;
+    }
+
+    return 0;
+}
+
+
+Write a program to search a number (taken as input from user) in an array 
+then print the index of the first occurrence of the input number in the array
+If the input number is not present in the array then print -1
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[5] = {10, 20, 30, 40, 50}; // example array
+    int target;
+
+    
+    cout << "Enter a number to search: ";
+    cin >> target;
+
+    
+    int index = -1;
+    for (int i = 0; i < 5; i++) {
+        if (arr[i] == target) {
+            index = i;
+            break;
+        }
+    }
+
+    
+    if (index != -1) {
+        cout << "Number found at index " << index << endl;
+    } else {
+        cout << "Number not found in the array" << endl;
+    }
+
+    return 0;
+}
+Write a program to print all unique numbers in an array.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[10] = {1, 2, 2, 3, 4, 4, 5, 6, 6, 7};
+
+    cout << "Unique numbers: ";
+    for (int i = 0; i < 10; i++) {
+        bool isUnique = true;
+        for (int j = 0; j < i; j++) {
+            if (arr[i] == arr[j]) {
+                isUnique = false;
+                break;
+            }
+        }
+        if (isUnique) {
+            cout << arr[i] << " ";
+        }
+    }
+    cout << endl;
+
+    return 0;
+}
+
+Write a program to count frequency of each number in an array.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[10] = {1, 2, 2, 3, 4, 4, 5, 6, 6, 7};
+    int count[10] = {0}; // Initialize count array with zeros
+
+    // Count frequency of each number
+    for (int i = 0; i < 10; i++) {
+        count[arr[i]]++;
+    }
+
+    // Print frequency of each number
+    for (int i = 0; i < 10; i++) {
+        if (count[i] > 0) {
+            cout << "Number " << i << " occurs " << count[i] << " times" << endl;
+        }
+    }
+
+    return 0;
+}
+
+Write a program to count total number of duplicate numbers in an array.
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[10] = {1, 2, 2, 3, 4, 4, 5, 6, 6, 7};
+    int count = 0; // Initialize count variable
+
+    // Count duplicate numbers
+    for (int i = 0; i < 10; i++) {
+        for (int j = i + 1; j < 10; j++) {
+            if (arr[i] == arr[j]) {
+                count++;
+                break;
+            }
+        }
+    }
+
+    // Print total count of duplicate numbers
+    cout << "Total number of duplicate numbers: " << count << endl;
+
+    return 0;
+}
+
+write a function in C to print following pattern
+
+Note: Number of rows and columns shall be the input parameters to the function
+
+Parallelogram
+
+*****
+*****
+*****
+*****
+*****
+
+#include <stdio.h>
+
+void printParallelogram(int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        // Print leading spaces
+        for (int j = 0; j < i; j++) {
+            printf(" ");
+        }
+        // Print asterisks
+        for (int k = 0; k < cols; k++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int rows = 5;
+    int cols = 5;
+    printParallelogram(rows, cols);
+    return 0;
+}
+
+write a function in C to print following pattern
+
+Note: Only number of rows shall be the input parameter to the function
+
+Right triangle
+
+*
+**
+***
+****
+*****
+
+#include <stdio.h>
+
+void printRightTriangle(int rows) {
+    for (int i = 1; i <= rows; i++) {
+        // Print asterisks
+        for (int j = 1; j <= i; j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int rows = 5;
+    printRightTriangle(rows);
+    return 0;
+}
+
+write a function in C to print following pattern
+
+Note: Only number of columns will be the input parameter to the function
+
+Half diamond
+
+*
+**
+***
+****
+*****
+****
+***
+**
+*
+
+#include <stdio.h>
+
+void printHalfDiamond(int cols) {
+    // Print the upper half of the diamond
+    for (int i = 1; i <= cols; i++) {
+        // Print asterisks
+        for (int j = 1; j <= i; j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+    // Print the lower half of the diamond
+    for (int i = cols - 1; i >= 1; i--) {
+        // Print asterisks
+        for (int j = 1; j <= i; j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int cols = 5;
+    printHalfDiamond(cols);
+    return 0;
+}
+
+write a function in C to print following pattern
+
+Note: Only odd number of rows will be the input parameter to the function. If the number of rows is even then print an error and return false else return true.
+
+Diamond
+
+    *
+   ***
+  *****
+ *******
+*********
+ *******
+  *****
+   ***
+    *
+
+
+#include <stdio.h>
+#include <stdbool.h>
+
+bool printDiamond(int rows) {
+    if (rows % 2 == 0) {
+        printf("Error: Number of rows must be odd.\n");
+        return false;
+    }
+
+    for (int i = 0; i < rows / 2 + 1; i++) {
+        // Print leading spaces
+        for (int j = 0; j < rows / 2 - i; j++) {
+            printf(" ");
+        }
+        // Print asterisks
+        for (int k = 0; k < 2 * i + 1; k++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+
+    for (int i = rows / 2 - 1; i >= 0; i--) {
+        // Print leading spaces
+        for (int j = 0; j < rows / 2 - i; j++) {
+            printf(" ");
+        }
+        // Print asterisks
+        for (int k = 0; k < 2 * i + 1; k++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+
+    return true;
+}
+
+int main() {
+    int rows = 9;
+    printDiamond(rows);
+    return 0;
+}
+
+
+write a function in C to print following pattern 
+
+Note: Number of rows and columns shall be the input parameters to the function
+
+12345
+54321
+12345
+54321
+12345
+
+#include <stdio.h>
+
+void printPattern(int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        if (i % 2 == 0) {
+            
+            for (int j = 1; j <= cols; j++) {
+                printf("%d", j);
+            }
+        } else {
+            // Print descending numbers
+            for (int j = cols; j >= 1; j--) {
+                printf("%d", j);
+            }
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int rows = 5;
+    int cols = 5;
+    printPattern(rows, cols);
+    return 0;
+}
+
+
+write a function in C to print following pattern 
+
+Note: Number of rows and columns shall be the input parameters to the function
+
+11111
+10001
+10001
+10001
+11111
+
+
+
+#include <stdio.h>
+
+void printPattern(int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (i == 0 || i == rows - 1) {
+                printf("1");
+            } else {
+                if (j == 0 || j == cols - 1) {
+                    printf("1");
+                } else {
+                    printf("0");
+                }
+            }
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int rows = 5;
+    int cols = 5;
+    printPattern(rows, cols);
+    return 0;
+}
+
+write a function in C to print following pattern 
+
+Note: number of rows shall be the input parameter to the function.
+
+12345
+23455
+34555
+45555
+55555
+
+#include <stdio.h>
+
+void printPattern(int rows) {
+    for (int i = 1; i <= rows; i++) {
+        int num = i;
+        for (int j = 1; j <= rows; j++) {
+            if (j <= i) {
+                printf("%d", num);
+                num++;
+            } else {
+                printf("5");
+            }
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int rows = 5;
+    printPattern(rows);
+    return 0;
+}
+
+
+find the majority of an elelment (element appers more than n/2)
+input[3,3,4,2,4,4,2,4,4]
+output = 4
